@@ -38,19 +38,32 @@
 
             Console.WriteLine("Veuillez taper chiffres entre 1 et 6"); 
             
-            
-            //TODO : catch ici pour debug le fait de mettre des lettres dans le choix de joueur
-            
-            //variables locale
-            int n = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(n);
+            //try catch to avoid player to put letters instead of numbers
+            try
+            {
+                //check if the player put 4 numbers
+                int choix = Convert.ToInt32(Console.ReadLine());
+                if (choix < 1111 || choix > 6666)
+                {
+                    Console.WriteLine("Veuillez entrer 4 chiffres entre 1 et 6");
+                    ChoixJoueur();
+                }
+                else
+                {
+                    //transform the int into an array of 4 numbers
+                    choixJoueur[0] = choix / 1000;
+                    choixJoueur[1] = (choix % 1000) / 100;
+                    choixJoueur[2] = (choix % 100) / 10;
+                    choixJoueur[3] = choix % 10;
+                }
+            }
+            catch (Exception e)
+                {
+                    Console.WriteLine("Veuillez entrer 4 chiffres");
+                    ChoixJoueur();
+                }
 
             int choixvalide = 0;
-            for (int i = 0; i < 4; i++)
-            {
-                choixJoueur[3 - i] = n % 10;
-                n = (n - choixJoueur[3 - i]) / 10;
-            }
             for (int i = 0; i < 4; i++)
             {
                 if (0 < choixJoueur[i] && choixJoueur[i] < 7)
@@ -155,7 +168,7 @@
                 }
             }
         }
-        
+
         static void Main()
         {
             Jeu();
