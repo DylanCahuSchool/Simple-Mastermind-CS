@@ -57,8 +57,8 @@
             }
             if (choixvalide == 4 && choixJoueur.Length == 4)
             {
-                Console.WriteLine("Vous avez choisi : " + PrintValues(choixJoueur));
-                Console.WriteLine("Et l'ordi a choisi : " + PrintValues(choixPC));
+                // Console.WriteLine("Vous avez choisi : " + PrintValues(choixJoueur));//debug
+                // Console.WriteLine("Et l'ordi a choisi : " + PrintValues(choixPC));//debug
                 return choixJoueur;
             }
             else
