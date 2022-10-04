@@ -126,7 +126,7 @@
             //variables locale
             var nbJeu = 0;
             choixOrdinateur();
-            Console.WriteLine(PrintValues(choixPC)); //debug
+            //Console.WriteLine(PrintValues(choixPC)); //debug
             ChoixJoueur(); //1ère manche
             while (nbCommun(choixPC, choixJoueur) != 4)
             {
