@@ -38,6 +38,9 @@
 
             Console.WriteLine("Veuillez taper chiffres entre 1 et 6"); 
             
+            
+            //TODO : catch ici pour debug le fait de mettre des lettres dans le choix de joueur
+            
             //variables locale
             int n = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(n);
@@ -139,6 +142,16 @@
                 else
                 {
                     Console.WriteLine("Perdu, c'était : "+ PrintValues(choixPC));
+                    Console.WriteLine("Voulez vous relancer une partie (y/n)");
+                    string rep = Console.ReadLine();
+                    if (rep == "y")
+                    {
+                        Jeu();
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }

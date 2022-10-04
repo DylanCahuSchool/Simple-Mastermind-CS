@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dydyp\\source\\repos\\mastermindConsole\\mastermindConsole\\mastermindConsole.csproj": {}
+    "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dydyp\\source\\repos\\mastermindConsole\\mastermindConsole\\mastermindConsole.csproj": {
+    "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dydyp\\source\\repos\\mastermindConsole\\mastermindConsole\\mastermindConsole.csproj",
+        "projectUniqueName": "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
         "projectName": "mastermindConsole",
-        "projectPath": "C:\\Users\\dydyp\\source\\repos\\mastermindConsole\\mastermindConsole\\mastermindConsole.csproj",
-        "packagesPath": "C:\\Users\\dydyp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dydyp\\source\\repos\\mastermindConsole\\mastermindConsole\\obj\\",
+        "projectPath": "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
+        "packagesPath": "C:\\Users\\Mars\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\dydyp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mars\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -49,7 +49,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -58,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
