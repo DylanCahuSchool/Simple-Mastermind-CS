@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Mastermind_Interface/1.0.0": {
+        "runtime": {
+          "Mastermind_Interface.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Mastermind_Interface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

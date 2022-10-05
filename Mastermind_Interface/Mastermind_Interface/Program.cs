@@ -12,6 +12,7 @@ namespace Mastermind_Interface
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            Motor Motor = new Motor();
         }
     }
 }

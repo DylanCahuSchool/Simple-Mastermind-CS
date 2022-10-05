@@ -1,4 +1,4 @@
-namespace Namespace
+namespace Mastermind_Interface
 {
 
    // using Random ;
@@ -10,7 +10,7 @@ namespace Namespace
     using System.Linq;
 
 
-    public class Module
+    public class Motor
     {
 
         public static int[] choixPC = {0,0,0,0};
@@ -169,9 +169,9 @@ namespace Namespace
             }
         }
 
-        static void Main()
-        {
-            Jeu();
-        }
+//        static void Main()
+//        {
+//            Jeu();
+//        }
     }
 }
