@@ -106,7 +106,16 @@
             if (cpt == 4)
             {
                 Console.WriteLine("Bravo ! Tu as réussi. La solution été : "+ PrintValues(TabPC));
-                Console.ReadLine();
+                Console.WriteLine("Voulez vous relancer une partie (y/n)");
+                string rep = Console.ReadLine();
+                if (rep == "y")
+                {
+                    Jeu();
+                }
+                else
+                {
+                    Console.ReadLine();
+                }
             }
             else if (cpt > 1)
             {
@@ -121,7 +130,8 @@
 
                 if (choixPC2[i] == choixJoueur2[0] || choixPC2[i] == TabJoueur[1] || choixPC2[i] == TabJoueur[2] || choixPC2[i] == TabJoueur[3])
                 {
-                    Console.WriteLine("Mais " + choixJoueur2[i] + " est mal placé");
+                    Console.WriteLine("Mais " + choixPC2[i] + ", à l'index " + i + " est mal placé");
+                    
                 }
             }
             return cpt;
@@ -142,7 +152,7 @@
             //variables locale
             var nbJeu = 0;
             choixOrdinateur();
-            //Console.WriteLine(PrintValues(choixPC)); //debug
+            Console.WriteLine(PrintValues(choixPC)); //debug
             ChoixJoueur(); //1ère manche
             while (nbCommun(choixPC, choixJoueur) != 4)
             {

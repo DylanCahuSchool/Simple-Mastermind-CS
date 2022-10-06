@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj": {}
+    "C:\\Users\\Mars\\Documents\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj": {
+    "C:\\Users\\Mars\\Documents\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
+        "projectUniqueName": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
         "projectName": "mastermindConsole",
-        "projectPath": "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
+        "projectPath": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
         "packagesPath": "C:\\Users\\Mars\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\obj\\",
+        "outputPath": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\mastermindConsole\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

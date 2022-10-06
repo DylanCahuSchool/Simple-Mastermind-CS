@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xJTyDbqF4u6vjGTkRXwMmGuwnH48+R2XBFgT44OwL7g29Myf05Gui8pV92IE2FR9MXAsiziE2Whxf2CUSg5CMA==",
+  "dgSpecHash": "DkWYxvSCH9UKAyAOurfj+MwL7qMP17xDHhW1Mww8NSuyFlOhLomcGuS+611e+q38FG5DTuLxKVqloG2zIRNqqg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mars\\Documents\\MDS\\C#\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
+  "projectFilePath": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\mastermindConsole\\mastermindConsole.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
