@@ -14,9 +14,6 @@ namespace Mastermind_Interface
             pictureBox2.Image = Image.FromFile(selectImage(0));
             pictureBox3.Image = Image.FromFile(selectImage(0));
             pictureBox4.Image = Image.FromFile(selectImage(0));
-            pictureBox5.Image = Image.FromFile(selectImage(0));
-            pictureBox6.Image = Image.FromFile(selectImage(0));
-
         }
 
         private string selectImage(int num)
@@ -77,37 +74,98 @@ namespace Mastermind_Interface
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
-            
+        {// frame 2 -
+
+            if (Motor.choixJoueur[1] <= 0)
+            {
+                Motor.choixJoueur[1] = 5;
+            }
+            else
+            {
+
+                Motor.choixJoueur[1]--;
+            }
+            pictureBox2.Image = Image.FromFile(selectImage(Motor.choixJoueur[1]));
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {
-            
+        {// frame 2 +
+
+            if (Motor.choixJoueur[1] >= 5)
+            {
+                Motor.choixJoueur[1] = 0;
+            }
+            else
+            {
+
+                Motor.choixJoueur[1]++;
+            }
+            pictureBox2.Image = Image.FromFile(selectImage(Motor.choixJoueur[1]));
+
         }
 
         private void button5_Click(object sender, EventArgs e)
-        {
-            
+        {// frame 3 -
+
+            if (Motor.choixJoueur[2] <= 0)
+            {
+                Motor.choixJoueur[2] = 5;
+            }
+            else
+            {
+
+                Motor.choixJoueur[2]--;
+            }
+            pictureBox3.Image = Image.FromFile(selectImage(Motor.choixJoueur[2]));
+
         }
 
         private void button6_Click(object sender, EventArgs e)
-        {
-            
+        {// frame 3 +
+
+            if (Motor.choixJoueur[2] >= 5)
+            {
+                Motor.choixJoueur[2] = 0;
+            }
+            else
+            {
+
+                Motor.choixJoueur[2]++;
+            }
+            pictureBox3.Image = Image.FromFile(selectImage(Motor.choixJoueur[2]));
+
         }
 
         private void button7_Click(object sender, EventArgs e)
-        {
-            
+        {// frame 4 -
+
+            if (Motor.choixJoueur[3] <= 0)
+            {
+                Motor.choixJoueur[3] = 5;
+            }
+            else
+            {
+
+                Motor.choixJoueur[3]--;
+            }
+            pictureBox4.Image = Image.FromFile(selectImage(Motor.choixJoueur[3]));
+
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {// frame 4 +
+
+            if (Motor.choixJoueur[3] >= 5)
+            {
+                Motor.choixJoueur[3] = 0;
+            }
+            else
+            {
+
+                Motor.choixJoueur[3]++;
+            }
+            pictureBox4.Image = Image.FromFile(selectImage(Motor.choixJoueur[3]));
+
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            
-        }
-        private void button10_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

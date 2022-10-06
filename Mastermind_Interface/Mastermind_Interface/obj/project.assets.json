@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mars\\OneDrive - EduServices\\C#\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
+      "projectUniqueName": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
       "projectName": "Mastermind_Interface",
-      "projectPath": "C:\\Users\\Mars\\OneDrive - EduServices\\C#\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
+      "projectPath": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
       "packagesPath": "C:\\Users\\Mars\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mars\\OneDrive - EduServices\\C#\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\obj\\",
+      "outputPath": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
