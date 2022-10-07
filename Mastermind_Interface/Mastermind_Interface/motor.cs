@@ -1,8 +1,5 @@
 namespace Mastermind_Interface
 {
-
-   // using Random ;
-
     using System.Collections.Generic;
 
     using System;
@@ -65,26 +62,27 @@ namespace Mastermind_Interface
                 Console.WriteLine("Bravo ! Tu as réussi. La solution été : ");
                 Console.ReadLine();
             }
-            else if (cpt > 1)
+            else if (cpt > 0)
             {
-                Console.WriteLine(cpt + " bonnes réponses, essaye encore !");
-            }
-            else
-            {
-                Console.WriteLine(cpt + " bonne réponse, essaye encore !");
+                //for i in cpt indic[i]=1
+                for (int i = 0; i < cpt; i++)
+                {
+                    indic[i] = 1;
+                }
+
             }
             for (int i = 0; i < 4; i++)
             {
 
                 if (choixPC2[i] == choixJoueur2[0] || choixPC2[i] == TabJoueur[1] || choixPC2[i] == TabJoueur[2] || choixPC2[i] == TabJoueur[3])
-                {   //TODO : Regarder si l'index de choixJoueur2 est bien celui a pointer en rouge.
-                    Console.WriteLine("Mais " + choixJoueur2[i] + " est mal placé");
+                {   
+                    indic[i] = 2;
                 }
             }
             return cpt;
         }
 
-        public static void Jeu()
+        public static void game()
         {   
             if (nbJeu <= 10)
             {

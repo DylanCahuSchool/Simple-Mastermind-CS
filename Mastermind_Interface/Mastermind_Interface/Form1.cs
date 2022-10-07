@@ -9,7 +9,7 @@ namespace Mastermind_Interface
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //initialize all picture boxes to image 1
+            //initialize 4 fist picture boxes to image 0
             pictureBox1.Image = Image.FromFile(selectImage(0));
             pictureBox2.Image = Image.FromFile(selectImage(0));
             pictureBox3.Image = Image.FromFile(selectImage(0));
@@ -33,6 +33,8 @@ namespace Mastermind_Interface
                     return "yellow.png";
                 case 5:
                     return "purple.png";
+                case 6:
+                    return "white.png";
                 default:
                     return "green.png";
             }
@@ -165,6 +167,22 @@ namespace Mastermind_Interface
             }
             pictureBox4.Image = Image.FromFile(selectImage(Motor.choixJoueur[3]));
 
+        }
+
+        private int nbBoxes;
+        //game phase function
+        private void game()
+        {
+
+            //create 4 new pictureBoxs 
+            PictureBox[] pictureBoxes = new PictureBox[4];
+            //Name them
+            for (int i = nbBoxes; i < nbBoxes + 4 ; i++)
+            {
+                pictureBoxes[i] = new PictureBox();
+                pictureBoxes[i].Name = "pictureBox" + (i + 1).ToString();
+            }
+            
         }
 
     }
