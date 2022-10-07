@@ -181,8 +181,13 @@ namespace Mastermind_Interface
             {
                 pictureBoxes[i] = new PictureBox();
                 pictureBoxes[i].Name = "pictureBox" + (i + 1).ToString();
+                pictureBoxes[i].Size = new Size(50, 50);
+                pictureBoxes[i].Location = new Point(50 + (i * 50), 50);
+                pictureBoxes[i].Image = Image.FromFile(selectImage(0));
             }
-            
+
+            nbBoxes += 4;
+
         }
 
     }
