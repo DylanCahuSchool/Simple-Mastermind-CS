@@ -170,31 +170,56 @@ namespace Mastermind_Interface
         }
         private void button13_Click(object sender, EventArgs e)
         {
-            game();
+
+            for (int i = 0; i < 20; i++)
+            {
+                displayBalls();
+            }
+            win();
         }
 
         private int nbBoxes;
         //game phase function
-        private void game()
+        private void displayBalls()
         {
             
-            //create 4 new pictureBoxs 
             PictureBox[] pictureBoxes = new PictureBox[nbBoxes+4];
-            //Name them
             for (int i = nbBoxes; i < nbBoxes + 4 ; i++)
             {
                 pictureBoxes[i] = new PictureBox();
                 pictureBoxes[i].Name = "pictureBox" + (i + 1).ToString();
                 pictureBoxes[i].Size = new Size(50, 50);
-                pictureBoxes[i].Location = new Point((nbBoxes * 15), (i * 50) - (nbBoxes * 50));
+                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25 , (i * 50) - (nbBoxes * 50) + 50);
                 pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
                 this.Controls.Add(pictureBoxes[i]);
-                
             }
-
             nbBoxes += 4;
+        }
 
+        private void win()
+        {   
+            this.Controls.Remove(pictureBox1);
+            this.Controls.Remove(pictureBox2);
+            this.Controls.Remove(pictureBox3);
+            this.Controls.Remove(pictureBox4);
+            this.Controls.Remove(button1);
+            this.Controls.Remove(button2);
+            this.Controls.Remove(button3);
+            this.Controls.Remove(button4);
+            this.Controls.Remove(button5);
+            this.Controls.Remove(button6);
+            this.Controls.Remove(button7);
+            this.Controls.Remove(button8);
+            this.Controls.Remove(button13);
+
+            //add a new picture box to the form
+            PictureBox winPic = new PictureBox();
+            //set the name of the picture box
+            winPic.Name = "pictureBox" + (nbBoxes + 1).ToString();
+            //set image to win.png
+            winPic.Image = Image.FromFile("win.png");
+            
         }
     }
 }
