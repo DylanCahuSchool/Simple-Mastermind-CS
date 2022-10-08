@@ -171,6 +171,7 @@
             this.button13.TabIndex = 18;
             this.button13.Text = "Submit";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // Form1
             // 

@@ -168,27 +168,33 @@ namespace Mastermind_Interface
             pictureBox4.Image = Image.FromFile(selectImage(Motor.choixJoueur[3]));
 
         }
+        private void button13_Click(object sender, EventArgs e)
+        {
+            game();
+        }
 
         private int nbBoxes;
         //game phase function
         private void game()
         {
-
+            
             //create 4 new pictureBoxs 
-            PictureBox[] pictureBoxes = new PictureBox[4];
+            PictureBox[] pictureBoxes = new PictureBox[nbBoxes+4];
             //Name them
             for (int i = nbBoxes; i < nbBoxes + 4 ; i++)
             {
                 pictureBoxes[i] = new PictureBox();
                 pictureBoxes[i].Name = "pictureBox" + (i + 1).ToString();
                 pictureBoxes[i].Size = new Size(50, 50);
-                pictureBoxes[i].Location = new Point(50 + (i * 50), 50);
-                pictureBoxes[i].Image = Image.FromFile(selectImage(0));
+                pictureBoxes[i].Location = new Point((nbBoxes * 15), (i * 50) - (nbBoxes * 50));
+                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
+                pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
+                this.Controls.Add(pictureBoxes[i]);
+                
             }
 
             nbBoxes += 4;
 
         }
-
     }
 }
