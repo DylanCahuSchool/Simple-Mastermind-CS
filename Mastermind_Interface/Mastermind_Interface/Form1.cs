@@ -193,18 +193,6 @@ namespace Mastermind_Interface
                 this.Controls.Add(pictureBoxes[i]);
             }
             nbBoxes += 4;
-            //add 4 new picture boxes in pictureBoxes
-            pictureBoxes = new PictureBox[nbBoxes + 4];
-            for (int i = nbBoxes; i < nbBoxes + 4; i++)
-            {
-                pictureBoxes[i] = new PictureBox();
-                pictureBoxes[i].Name = "pictureBox" + (i + 1).ToString();
-                pictureBoxes[i].Size = new Size(25, 25);
-                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25, (i * 50) - (nbBoxes * 50) + 50);
-                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
-                pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
-                this.Controls.Add(pictureBoxes[i]);
-            }
         }
 
         private void yes_Click(object sender, EventArgs e)
