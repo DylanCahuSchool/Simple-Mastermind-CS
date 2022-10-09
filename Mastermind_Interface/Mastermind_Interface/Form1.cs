@@ -197,6 +197,16 @@ namespace Mastermind_Interface
             nbBoxes += 4;
         }
 
+        private void yes_Click(object sender, EventArgs e)
+        {//reload form1
+            Application.Restart();
+        }
+
+        private void no_Click(object sender, EventArgs e)
+        {//close the application
+            Application.Exit();
+        }
+
         private void win()
         {   
             this.Controls.Remove(pictureBox1);
@@ -212,14 +222,32 @@ namespace Mastermind_Interface
             this.Controls.Remove(button7);
             this.Controls.Remove(button8);
             this.Controls.Remove(button13);
-
-            //add a new picture box to the form
-            PictureBox winPic = new PictureBox();
-            //set the name of the picture box
-            winPic.Name = "pictureBox" + (nbBoxes + 1).ToString();
-            //set image to win.png
-            winPic.Image = Image.FromFile("win.png");
             
+            PictureBox winPic = new PictureBox();
+            winPic.Name = "pictureBox" + (nbBoxes + 1).ToString();
+            winPic.Size = new Size(750, 200);
+            winPic.Location = new Point(250, 250);
+            winPic.Image = Image.FromFile("win.png");
+            winPic.SizeMode = PictureBoxSizeMode.Zoom;
+            this.Controls.Add(winPic);
+
+            //create a new button "yes"
+            Button yes = new Button();
+            yes.Name = "yes";
+            yes.Size = new Size(100, 50);
+            yes.Location = new Point(510, 460);
+            yes.Text = "Oui";
+            yes.Click += new EventHandler(yes_Click);
+            this.Controls.Add(yes);
+
+            //create a new button "no"
+            Button no = new Button();
+            no.Name = "no";
+            no.Size = new Size(100, 50);
+            no.Location = new Point(610, 460);
+            no.Text = "Non";
+            no.Click += new EventHandler(no_Click);
+            this.Controls.Add(no);
         }
     }
 }
