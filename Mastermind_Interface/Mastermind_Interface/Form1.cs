@@ -4,6 +4,7 @@ namespace Mastermind_Interface
     {
 
         private int nbBoxes;
+        private int nbHints;
         
         public Form1()
         {
@@ -193,6 +194,26 @@ namespace Mastermind_Interface
                 this.Controls.Add(pictureBoxes[i]);
             }
             nbBoxes += 4;
+            PictureBox[] pictureBoxes2 = new PictureBox[nbHints +4];
+            for (int i = nbHints; i < nbHints; i++)
+            {
+                pictureBoxes2[i] = new PictureBox();
+                pictureBoxes2[i].Name = "pictureBox" + (nbBoxes + nbHints + 1).ToString();
+                pictureBoxes2[i].Size = new Size(25, 25);
+                //if i isn't even
+                if (i % 2 != 0)
+                {
+                    pictureBoxes2[i].Location = new Point((nbHints * 15), 0);
+                }
+                else
+                {
+                    pictureBoxes2[i].Location = new Point(10, 25);
+                }
+                pictureBoxes2[i].Image = Image.FromFile(selectImage(Motor.indic[i - nbHints]));
+                pictureBoxes2[i].SizeMode = PictureBoxSizeMode.Zoom;
+                this.Controls.Add(pictureBoxes2[i]);
+            }
+            nbHints += 4;
         }
 
         private void yes_Click(object sender, EventArgs e)
