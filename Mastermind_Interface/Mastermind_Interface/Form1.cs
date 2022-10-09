@@ -2,6 +2,9 @@ namespace Mastermind_Interface
 {
     public partial class Form1 : Form
     {
+
+        private int nbBoxes;
+        
         public Form1()
         {
             InitializeComponent();
@@ -170,16 +173,10 @@ namespace Mastermind_Interface
         }
         private void button13_Click(object sender, EventArgs e)
         {//submit
-            //displayBalls();
-
-            for (int i = 0; i < 20; i++)
-            {
-                displayBalls();
-            }
-            fail();
+            //Motor.game();
+            displayBalls();
         }
 
-        private int nbBoxes;
         //game phase function
         private void displayBalls()
         {
@@ -196,6 +193,18 @@ namespace Mastermind_Interface
                 this.Controls.Add(pictureBoxes[i]);
             }
             nbBoxes += 4;
+            //add 4 new picture boxes in pictureBoxes
+            pictureBoxes = new PictureBox[nbBoxes + 4];
+            for (int i = nbBoxes; i < nbBoxes + 4; i++)
+            {
+                pictureBoxes[i] = new PictureBox();
+                pictureBoxes[i].Name = "pictureBox" + (i + 1).ToString();
+                pictureBoxes[i].Size = new Size(25, 25);
+                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25, (i * 50) - (nbBoxes * 50) + 50);
+                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
+                pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
+                this.Controls.Add(pictureBoxes[i]);
+            }
         }
 
         private void yes_Click(object sender, EventArgs e)
@@ -208,7 +217,7 @@ namespace Mastermind_Interface
             Application.Exit();
         }
 
-        private void win()
+        public void win()
         {   
             this.Controls.Remove(pictureBox1);
             this.Controls.Remove(pictureBox2);
@@ -251,7 +260,7 @@ namespace Mastermind_Interface
             this.Controls.Add(no);
         }
         
-        private void fail()
+        public void fail()
         {   
             this.Controls.Remove(pictureBox1);
             this.Controls.Remove(pictureBox2);

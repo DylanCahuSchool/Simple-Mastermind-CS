@@ -76,7 +76,7 @@ namespace Mastermind_Interface
 
                 if (choixPC2[i] == choixJoueur2[0] || choixPC2[i] == TabJoueur[1] || choixPC2[i] == TabJoueur[2] || choixPC2[i] == TabJoueur[3])
                 {   
-                    indic[i] = 2;
+                    indic[i] = 6;
                 }
             }
             return cpt;
@@ -94,7 +94,8 @@ namespace Mastermind_Interface
             }
             else
             {
-                //perdu
+                //execute fail() in Form1
+                Program.form1.fail();
             }
         }
     }
