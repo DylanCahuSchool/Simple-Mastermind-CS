@@ -169,13 +169,14 @@ namespace Mastermind_Interface
 
         }
         private void button13_Click(object sender, EventArgs e)
-        {
+        {//submit
+            //displayBalls();
 
             for (int i = 0; i < 20; i++)
             {
                 displayBalls();
             }
-            win();
+            fail();
         }
 
         private int nbBoxes;
@@ -230,6 +231,49 @@ namespace Mastermind_Interface
             winPic.Image = Image.FromFile("win.png");
             winPic.SizeMode = PictureBoxSizeMode.Zoom;
             this.Controls.Add(winPic);
+
+            //create a new button "yes"
+            Button yes = new Button();
+            yes.Name = "yes";
+            yes.Size = new Size(100, 50);
+            yes.Location = new Point(510, 460);
+            yes.Text = "Oui";
+            yes.Click += new EventHandler(yes_Click);
+            this.Controls.Add(yes);
+
+            //create a new button "no"
+            Button no = new Button();
+            no.Name = "no";
+            no.Size = new Size(100, 50);
+            no.Location = new Point(610, 460);
+            no.Text = "Non";
+            no.Click += new EventHandler(no_Click);
+            this.Controls.Add(no);
+        }
+        
+        private void fail()
+        {   
+            this.Controls.Remove(pictureBox1);
+            this.Controls.Remove(pictureBox2);
+            this.Controls.Remove(pictureBox3);
+            this.Controls.Remove(pictureBox4);
+            this.Controls.Remove(button1);
+            this.Controls.Remove(button2);
+            this.Controls.Remove(button3);
+            this.Controls.Remove(button4);
+            this.Controls.Remove(button5);
+            this.Controls.Remove(button6);
+            this.Controls.Remove(button7);
+            this.Controls.Remove(button8);
+            this.Controls.Remove(button13);
+            
+            PictureBox failPic = new PictureBox();
+            failPic.Name = "pictureBox" + (nbBoxes + 1).ToString();
+            failPic.Size = new Size(750, 200);
+            failPic.Location = new Point(250, 250);
+            failPic.Image = Image.FromFile("fail.png");
+            failPic.SizeMode = PictureBoxSizeMode.Zoom;
+            this.Controls.Add(failPic);
 
             //create a new button "yes"
             Button yes = new Button();
