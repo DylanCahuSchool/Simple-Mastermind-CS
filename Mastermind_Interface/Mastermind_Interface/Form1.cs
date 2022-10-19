@@ -81,7 +81,7 @@ namespace Mastermind_Interface
                     return "purple.png";
                     break;
                 case 6:
-                    return "white.png";
+                    return "orange.png";
                     break;
                 default:
                     return "error.png";
@@ -122,11 +122,11 @@ namespace Mastermind_Interface
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            //Motor.game();
             displayBalls();
+            Motor.game();
         }
 
-        //game phase function
+        
         private void displayBalls()
         {
             
@@ -197,10 +197,20 @@ namespace Mastermind_Interface
         }
         
         public void fail()
-        {   
+        {
             
             this.Controls.Remove(Submit);
-            
+            //for each pb, remove them
+            for (int i = 0; i < 4; i++)
+            {
+                this.Controls.Remove(this.Controls.Find("pb" + i, true)[0]);
+            }
+            //for each button, remove them
+            for (int i = 0; i < 8; i++)
+            {
+                this.Controls.Remove(this.Controls.Find("btn" + i, true)[0]);
+            }
+
             PictureBox failPic = new PictureBox();
             failPic.Name = "pictureB" + (nbBoxes + 1).ToString();
             failPic.Size = new Size(750, 200);
@@ -255,7 +265,7 @@ namespace Mastermind_Interface
                 Motor.choixJoueur[returnIndex(num)]++;
             }
             
-            if (Motor.choixJoueur[returnIndex(num)] > 5)
+            if (Motor.choixJoueur[returnIndex(num)] > 6)
             {
                 Motor.choixJoueur[returnIndex(num)] = 0;
             }
@@ -263,7 +273,10 @@ namespace Mastermind_Interface
             {
                 Motor.choixJoueur[returnIndex(num)] = 6;
             }
-            PicBox(returnIndex(num)).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
+           if (num < 8) {
+                PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
+            }
+            //PicBox(returnIndex(num)).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
         }
     }
 }
