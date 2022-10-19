@@ -84,9 +84,9 @@ namespace Mastermind_Interface
 
         public static void game()
         {   
-            if (nbJeu <= 10)
+            if (nbJeu <= 15)
             {
-                //soit 11 manches 
+                //soit 16 manches 
                 nbJeu += 1;
 
                 nbCommun(choixPC, choixJoueur);
