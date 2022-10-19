@@ -48,6 +48,7 @@
             this.BackColor = System.Drawing.Color.SandyBrown;
             this.ClientSize = new System.Drawing.Size(1197, 532);
             this.Controls.Add(this.Submit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Mastermind beta";
             this.Load += new System.EventHandler(this.Form1_Load);

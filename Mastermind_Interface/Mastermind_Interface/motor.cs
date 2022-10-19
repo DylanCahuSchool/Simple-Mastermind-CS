@@ -14,7 +14,7 @@ namespace Mastermind_Interface
 
         public static int[] choixJoueur = {0,0,0,0};
 
-        public static int[] indic = {0,0,0,0};
+        public static int[] indic = {8,8,8,8};
 
         public static bool phaseJeu = false;
 
@@ -59,8 +59,8 @@ namespace Mastermind_Interface
             }
             if (cpt == 4)
             {
-                Console.WriteLine("Bravo ! Tu as réussi. La solution été : ");
-                Console.ReadLine();
+                //execute fail() in Form1
+                Program.form1.win();
             }
             else if (cpt > 0)
             {
@@ -76,7 +76,7 @@ namespace Mastermind_Interface
 
                 if (choixPC2[i] == choixJoueur2[0] || choixPC2[i] == TabJoueur[1] || choixPC2[i] == TabJoueur[2] || choixPC2[i] == TabJoueur[3])
                 {   
-                    indic[i] = 6;
+                    indic[i] = 7;
                 }
             }
             return cpt;

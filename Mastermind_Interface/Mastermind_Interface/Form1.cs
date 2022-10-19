@@ -21,7 +21,8 @@ namespace Mastermind_Interface
             int Percent25Width = Convert.ToInt32(this.Size.Width * 0.25);
             int Percent50Width = Convert.ToInt32(this.Size.Width * 0.5);
             int Percent75Width = Convert.ToInt32(this.Size.Width * 0.75);
-            
+            int Percent90Width = Convert.ToInt32(this.Size.Width * 0.90);
+
             //create 4 picture boxes and initialize them to green
             for (int i = 0; i < 4; i++)
             {
@@ -62,30 +63,16 @@ namespace Mastermind_Interface
             //switch to return image name
             switch (num)
             {
-                case 0:
-                    return "green.png";
-                    break;
-                case 1:
-                    return "red.png";
-                    break;
-                case 2:
-                    return "blue.png";
-                    break;
-                case 3:
-                    return "pink.png";
-                    break;
-                case 4:
-                    return "yellow.png";
-                    break;
-                case 5:
-                    return "purple.png";
-                    break;
-                case 6:
-                    return "orange.png";
-                    break;
-                default:
-                    return "error.png";
-                    break;
+                case 0: return "green.png";
+                case 1: return "red.png";
+                case 2: return "blue.png"; 
+                case 3: return "pink.png"; 
+                case 4: return "yellow.png";
+                case 5: return "purple.png"; 
+                case 6: return "orange.png";
+                case 7: return "white.png";
+                case 8: return "none.png";
+                default: return "error.png";
             }
         }
 
@@ -95,23 +82,14 @@ namespace Mastermind_Interface
             switch (num)
             {
                 case 0:
-                case 1:
-                    return index = 0;
-                    break;
+                case 1:  return index = 0;
                 case 2:
-                case 3:
-                    return index = 1;
-                    break;
+                case 3:  return index = 1;
                 case 4:
-                case 5:
-                    return index = 2;
-                    break;
+                case 5:  return index = 2;
                 case 6:
-                case 7:
-                    return index = 3;
-                    break;
-                default:
-                    return index = 455;//bidouille
+                case 7:  return index = 3;
+                default: return index = 455;//bidouille
             }
         }
 
@@ -122,10 +100,10 @@ namespace Mastermind_Interface
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            displayBalls();
-            Motor.game();
-        }
 
+            Motor.game();
+            displayBalls();
+        }
         
         private void displayBalls()
         {
@@ -143,32 +121,60 @@ namespace Mastermind_Interface
             }
             nbBoxes += 4;
             
-            for (int i = nbHints; i < nbHints; i++)
+            PictureBox[] hintBoxes = new PictureBox[nbHints+4];
+            for (int i = nbHints; i < nbHints + 4 ; i++)
+            {
+                hintBoxes[i] = new PictureBox();
+                hintBoxes[i].Name = "hintBox" + (i + 1).ToString();
+                hintBoxes[i].Size = new Size(25, 25);
+                hintBoxes[i].Image = Image.FromFile(selectImage(Motor.indic[i - nbHints]));
+                //hintBoxes[i].Image = Image.FromFile("error.png");
+                hintBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
+                this.Controls.Add(hintBoxes[i]);
+            }
+            hintBoxes[nbHints].Location = new Point((nbHints * 15) + 25, 0);
+            hintBoxes[nbHints +2].Location = new Point((nbHints * 15) + 50, 0);
+            hintBoxes[nbHints +1].Location = new Point((nbHints * 15) +25, 25);
+            hintBoxes[nbHints +3].Location = new Point((nbHints * 15) + 50, 25);
+            
+            nbHints += 4;
+            
+        }
+
+        public void displayBallsEnd()
+        {
+
+            int Percent90Width = Convert.ToInt32(this.Size.Width * 0.90);
+
+            PictureBox[] pictureBoxes = new PictureBox[nbBoxes + 4];
+            for (int i = nbBoxes; i < nbBoxes + 4; i++)
             {
                 pictureBoxes[i] = new PictureBox();
-                pictureBoxes[i].Name = "pictureB" + (nbBoxes + nbHints + 1).ToString();
-                pictureBoxes[i].Size = new Size(25, 25);
-                //if i isn't even
-                if (i % 2 != 0)
-                {
-                    pictureBoxes[i].Location = new Point((nbHints * 15), 0);
-                }
-                else
-                {
-                    pictureBoxes[i].Location = new Point(10, 25);
-                }
-                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.indic[i - nbHints]));
+                pictureBoxes[i].Name = "pictureB" + (i + 1).ToString();
+                pictureBoxes[i].Size = new Size(50, 50);
+                pictureBoxes[i].Location = new Point(Percent90Width, (i * 50) - (nbBoxes * 50) + 50);
+                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixPC[i - nbBoxes]));
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
                 this.Controls.Add(pictureBoxes[i]);
             }
-            nbHints += 4;
+            
         }
 
         public void win()
         {   
       
             this.Controls.Remove(Submit);
-            
+            //for each pb, remove them
+            for (int i = 0; i < 4; i++)
+            {
+                this.Controls.Remove(this.Controls.Find("pb" + i, true)[0]);
+            }
+            //for each button, remove them
+            for (int i = 0; i < 8; i++)
+            {
+                this.Controls.Remove(this.Controls.Find("btn" + i, true)[0]);
+            }
+
             PictureBox winPic = new PictureBox();
             winPic.Name = "pictureB" + (nbBoxes + 1).ToString();
             winPic.Size = new Size(750, 200);
@@ -194,6 +200,8 @@ namespace Mastermind_Interface
             no.Text = "Non";
             no.Click += new EventHandler(no_Click);
             this.Controls.Add(no);
+
+            displayBallsEnd();
         }
         
         public void fail()
@@ -210,9 +218,9 @@ namespace Mastermind_Interface
             {
                 this.Controls.Remove(this.Controls.Find("btn" + i, true)[0]);
             }
-
+            
             PictureBox failPic = new PictureBox();
-            failPic.Name = "pictureB" + (nbBoxes + 1).ToString();
+            failPic.Name = "failbox";
             failPic.Size = new Size(750, 200);
             failPic.Location = new Point(250, 250);
             failPic.Image = Image.FromFile("fail.png");
@@ -236,6 +244,8 @@ namespace Mastermind_Interface
             no.Text = "Non";
             no.Click += new EventHandler(no_Click);
             this.Controls.Add(no);
+
+            displayBallsEnd();
         }
 
         private void yes_Click(object sender, EventArgs e)
@@ -276,7 +286,6 @@ namespace Mastermind_Interface
            if (num < 8) {
                 PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
             }
-            //PicBox(returnIndex(num)).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
         }
     }
 }
