@@ -1,0 +1,372 @@
+diff --git a/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/7eb548bf-4b9d-4298-895c-c13a6b41d18d.vsidx b/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/7eb548bf-4b9d-4298-895c-c13a6b41d18d.vsidx
+deleted file mode 100644
+index 25d7668..0000000
+Binary files a/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/7eb548bf-4b9d-4298-895c-c13a6b41d18d.vsidx and /dev/null differ
+diff --git a/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/86ae498a-8398-4b00-9180-891b14211c35.vsidx b/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/86ae498a-8398-4b00-9180-891b14211c35.vsidx
+deleted file mode 100644
+index 4de7672..0000000
+Binary files a/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/86ae498a-8398-4b00-9180-891b14211c35.vsidx and /dev/null differ
+diff --git a/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/99a84000-5b45-44bf-8498-e2e766e4aa4b.vsidx b/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/99a84000-5b45-44bf-8498-e2e766e4aa4b.vsidx
+deleted file mode 100644
+index 66742f9..0000000
+Binary files a/Mastermind_Interface/.vs/Mastermind_Interface/FileContentIndex/99a84000-5b45-44bf-8498-e2e766e4aa4b.vsidx and /dev/null differ
+diff --git a/Mastermind_Interface/.vs/Mastermind_Interface/v17/.futdcache.v2 b/Mastermind_Interface/.vs/Mastermind_Interface/v17/.futdcache.v2
+index 8b18d73..0f110c9 100644
+Binary files a/Mastermind_Interface/.vs/Mastermind_Interface/v17/.futdcache.v2 and b/Mastermind_Interface/.vs/Mastermind_Interface/v17/.futdcache.v2 differ
+diff --git a/Mastermind_Interface/.vs/Mastermind_Interface/v17/.suo b/Mastermind_Interface/.vs/Mastermind_Interface/v17/.suo
+index ccf96d9..306829c 100644
+Binary files a/Mastermind_Interface/.vs/Mastermind_Interface/v17/.suo and b/Mastermind_Interface/.vs/Mastermind_Interface/v17/.suo differ
+diff --git a/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.metadata.v5.1 b/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.metadata.v5.1
+index dbd4f3d..251c133 100644
+Binary files a/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.metadata.v5.1 and b/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.metadata.v5.1 differ
+diff --git a/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.projects.v5.1 b/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.projects.v5.1
+index 693654f..ab38ad0 100644
+Binary files a/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.projects.v5.1 and b/Mastermind_Interface/.vs/ProjectEvaluation/mastermind_interface.projects.v5.1 differ
+diff --git a/Mastermind_Interface/Mastermind_Interface/Form1.Designer.cs b/Mastermind_Interface/Mastermind_Interface/Form1.Designer.cs
+index 4badc22..a4fae0f 100644
+--- a/Mastermind_Interface/Mastermind_Interface/Form1.Designer.cs
++++ b/Mastermind_Interface/Mastermind_Interface/Form1.Designer.cs
+@@ -28,36 +28,22 @@
+         /// </summary>
+         private void InitializeComponent()
+         {
+-            this.Submit = new System.Windows.Forms.Button();
+             this.SuspendLayout();
+             // 
+-            // Submit
+-            // 
+-            this.Submit.Location = new System.Drawing.Point(1091, 12);
+-            this.Submit.Name = "Submit";
+-            this.Submit.Size = new System.Drawing.Size(94, 29);
+-            this.Submit.TabIndex = 0;
+-            this.Submit.Text = "Submit";
+-            this.Submit.UseVisualStyleBackColor = true;
+-            this.Submit.Click += new System.EventHandler(this.Submit_Click);
+-            // 
+             // Form1
+             // 
+             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+             this.BackColor = System.Drawing.Color.SandyBrown;
+             this.ClientSize = new System.Drawing.Size(1197, 532);
+-            this.Controls.Add(this.Submit);
+-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+             this.Name = "Form1";
+-            this.Text = "Mastermind beta";
++            this.Text = "Mastermind alpha";
+             this.Load += new System.EventHandler(this.Form1_Load);
++            this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
+             this.ResumeLayout(false);
+ 
+         }
+ 
+         #endregion
+-
+-        private Button Submit;
+     }
+ }
+\ No newline at end of file
+diff --git a/Mastermind_Interface/Mastermind_Interface/Form1.cs b/Mastermind_Interface/Mastermind_Interface/Form1.cs
+index 80eeb9c..124e597 100644
+--- a/Mastermind_Interface/Mastermind_Interface/Form1.cs
++++ b/Mastermind_Interface/Mastermind_Interface/Form1.cs
+@@ -5,7 +5,6 @@ namespace Mastermind_Interface
+ {
+     public partial class Form1 : Form
+     {
+-
+         private int nbBoxes;
+         private int nbHints;
+         public Form1()
+@@ -15,13 +14,13 @@ namespace Mastermind_Interface
+ 
+         private void Form1_Load(object sender, EventArgs e)
+         {
+-            int Percent25Height = Convert.ToInt32(this.Size.Height * 0.25);
+-            int Percent50Height = Convert.ToInt32(this.Size.Height * 0.5);
+-            int Percent75Height = Convert.ToInt32(this.Size.Height * 0.75);
+-            int Percent25Width = Convert.ToInt32(this.Size.Width * 0.25);
+-            int Percent50Width = Convert.ToInt32(this.Size.Width * 0.5);
+-            int Percent75Width = Convert.ToInt32(this.Size.Width * 0.75);
+-            int Percent90Width = Convert.ToInt32(this.Size.Width * 0.90);
++
++            //create submit button and set position at the bottom of the form
++            Button submit = new Button();
++            submit.Text = "Submit";
++            submit.Location = new Point(0, 0);
++            submit.Click += new EventHandler(submit_Click);
++            this.Controls.Add(submit);
+ 
+             //create 4 picture boxes and initialize them to green
+             for (int i = 0; i < 4; i++)
+@@ -29,7 +28,7 @@ namespace Mastermind_Interface
+                 PictureBox pb = new PictureBox();
+                 pb.Name = "pb" + i;
+                 pb.Size = new Size(100, 100);
+-                pb.Location = new Point(50 + i * Percent25Width, Percent50Height);
++                pb.Location = new Point(50 + i * returnPosition(25, "w"), returnPosition(65, "h"));
+                 pb.Image = Image.FromFile(selectImage(0));
+                 pb.SizeMode = PictureBoxSizeMode.Zoom;
+                 this.Controls.Add(pb);
+@@ -37,7 +36,7 @@ namespace Mastermind_Interface
+             //create 8 button and initialize 4 to + and 4 to -
+             for (int i = 0; i < 8; i++)
+             {
+-                
++
+                 Button btn = new Button();
+                 btn.Name = "btn" + i;
+                 btn.Size = new Size(50, 50);
+@@ -45,12 +44,10 @@ namespace Mastermind_Interface
+                 {
+                     btn.Text = "-";
+                     btn.Location = new Point(PicBox(i).Location.X, PicBox(i).Location.Y + 100);
+-                    //btn.Location = new Point(50 + i * Percent25Width, Percent75Height);
+                 }
+                 else
+                 {
+                     btn.Text = "+";
+-                    //place the button to the right of the previous one
+                     btn.Location = new Point(PicBox(i).Location.X + 50, PicBox(i).Location.Y + 100);
+                 }
+                 btn.Click += new EventHandler(btn_Click);
+@@ -58,6 +55,18 @@ namespace Mastermind_Interface
+             }
+ 
+         }
++
++        private int returnPosition(int num, string c)
++        {
++            if (c[0] == 'w')
++            {
++                return Convert.ToInt32(this.Size.Width * num / 100);
++            }
++            else
++            {
++                return Convert.ToInt32(this.Size.Height * num / 100);
++            }
++        }
+         private string selectImage(int num)
+         {
+             //switch to return image name
+@@ -65,10 +74,10 @@ namespace Mastermind_Interface
+             {
+                 case 0: return "green.png";
+                 case 1: return "red.png";
+-                case 2: return "blue.png"; 
+-                case 3: return "pink.png"; 
++                case 2: return "blue.png";
++                case 3: return "pink.png";
+                 case 4: return "yellow.png";
+-                case 5: return "purple.png"; 
++                case 5: return "purple.png";
+                 case 6: return "orange.png";
+                 case 7: return "white.png";
+                 case 8: return "none.png";
+@@ -82,13 +91,13 @@ namespace Mastermind_Interface
+             switch (num)
+             {
+                 case 0:
+-                case 1:  return index = 0;
++                case 1: return index = 0;
+                 case 2:
+-                case 3:  return index = 1;
++                case 3: return index = 1;
+                 case 4:
+-                case 5:  return index = 2;
++                case 5: return index = 2;
+                 case 6:
+-                case 7:  return index = 3;
++                case 7: return index = 3;
+                 default: return index = 455;//bidouille
+             }
+         }
+@@ -98,31 +107,31 @@ namespace Mastermind_Interface
+             return (PictureBox)this.Controls.Find("pb" + returnIndex(num), true)[0];
+         }
+ 
+-        private void Submit_Click(object sender, EventArgs e)
++        private void submit_Click(object sender, EventArgs e)
+         {
+-
+-            Motor.game();
+-            displayBalls();
++            win();
++            //Motor.game();
++            //displayBalls();
+         }
+-        
++
+         private void displayBalls()
+         {
+-            
+-            PictureBox[] pictureBoxes = new PictureBox[nbBoxes+4];
+-            for (int i = nbBoxes; i < nbBoxes + 4 ; i++)
++
++            PictureBox[] pictureBoxes = new PictureBox[nbBoxes + 4];
++            for (int i = nbBoxes; i < nbBoxes + 4; i++)
+             {
+                 pictureBoxes[i] = new PictureBox();
+                 pictureBoxes[i].Name = "pictureB" + (i + 1).ToString();
+                 pictureBoxes[i].Size = new Size(50, 50);
+-                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25 , (i * 50) - (nbBoxes * 50) + 50);
++                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25, (i * 50) - (nbBoxes * 50) + 50);
+                 pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
+                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
+                 this.Controls.Add(pictureBoxes[i]);
+             }
+             nbBoxes += 4;
+-            
+-            PictureBox[] hintBoxes = new PictureBox[nbHints+4];
+-            for (int i = nbHints; i < nbHints + 4 ; i++)
++
++            PictureBox[] hintBoxes = new PictureBox[nbHints + 4];
++            for (int i = nbHints; i < nbHints + 4; i++)
+             {
+                 hintBoxes[i] = new PictureBox();
+                 hintBoxes[i].Name = "hintBox" + (i + 1).ToString();
+@@ -133,37 +142,34 @@ namespace Mastermind_Interface
+                 this.Controls.Add(hintBoxes[i]);
+             }
+             hintBoxes[nbHints].Location = new Point((nbHints * 15) + 25, 0);
+-            hintBoxes[nbHints +2].Location = new Point((nbHints * 15) + 50, 0);
+-            hintBoxes[nbHints +1].Location = new Point((nbHints * 15) +25, 25);
+-            hintBoxes[nbHints +3].Location = new Point((nbHints * 15) + 50, 25);
+-            
++            hintBoxes[nbHints + 2].Location = new Point((nbHints * 15) + 50, 0);
++            hintBoxes[nbHints + 1].Location = new Point((nbHints * 15) + 25, 25);
++            hintBoxes[nbHints + 3].Location = new Point((nbHints * 15) + 50, 25);
++
+             nbHints += 4;
+-            
++
+         }
+ 
+         public void displayBallsEnd()
+         {
+-
+-            int Percent90Width = Convert.ToInt32(this.Size.Width * 0.90);
+-
+             PictureBox[] pictureBoxes = new PictureBox[nbBoxes + 4];
+             for (int i = nbBoxes; i < nbBoxes + 4; i++)
+             {
+                 pictureBoxes[i] = new PictureBox();
+                 pictureBoxes[i].Name = "pictureB" + (i + 1).ToString();
+                 pictureBoxes[i].Size = new Size(50, 50);
+-                pictureBoxes[i].Location = new Point(Percent90Width, (i * 50) - (nbBoxes * 50) + 50);
++                pictureBoxes[i].Location = new Point(returnPosition(90, "w"), (i * 50) - (nbBoxes * 50) + 50);
+                 pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixPC[i - nbBoxes]));
+                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
+                 this.Controls.Add(pictureBoxes[i]);
+             }
+-            
++
+         }
+ 
+         public void win()
+-        {   
+-      
+-            this.Controls.Remove(Submit);
++        {
++
++            
+             //for each pb, remove them
+             for (int i = 0; i < 4; i++)
+             {
+@@ -203,11 +209,12 @@ namespace Mastermind_Interface
+ 
+             displayBallsEnd();
+         }
+-        
++
+         public void fail()
+         {
++            //remove the submit button
++            this.Controls.Remove(this.Controls.Find("submit", true)[0]);
+             
+-            this.Controls.Remove(Submit);
+             //for each pb, remove them
+             for (int i = 0; i < 4; i++)
+             {
+@@ -218,7 +225,7 @@ namespace Mastermind_Interface
+             {
+                 this.Controls.Remove(this.Controls.Find("btn" + i, true)[0]);
+             }
+-            
++
+             PictureBox failPic = new PictureBox();
+             failPic.Name = "failbox";
+             failPic.Size = new Size(750, 200);
+@@ -274,18 +281,53 @@ namespace Mastermind_Interface
+             {
+                 Motor.choixJoueur[returnIndex(num)]++;
+             }
+-            
++
+             if (Motor.choixJoueur[returnIndex(num)] > 6)
+             {
+                 Motor.choixJoueur[returnIndex(num)] = 0;
+             }
+-            else if(Motor.choixJoueur[returnIndex(num)] < 0)
++            else if (Motor.choixJoueur[returnIndex(num)] < 0)
+             {
+                 Motor.choixJoueur[returnIndex(num)] = 6;
+             }
+-           if (num < 8) {
++            if (num < 8)
++            {
+                 PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
+             }
+         }
++
++        private void Form1_ResizeEnd(object sender, EventArgs e)
++        {//foreach item in controller, adapt the position
++            foreach (Control c in this.Controls)
++            {
++                if (c.Name.Contains("pb"))
++                {
++                    int num = Convert.ToInt32(c.Name.Substring(2));
++                    c.Location = new Point(50 + num * returnPosition(25, "w"), returnPosition(65, "h"));
++                }
++                else if (c.Name.Contains("btn"))
++                {
++                    int num = Convert.ToInt32(c.Name.Substring(3));
++                    if (c.Text == "+")
++                    {
++                        c.Location = new Point(PicBox(num).Location.X + 50, PicBox(num).Location.Y + 100);
++                    }
++                    else if (c.Text == "-")
++                    {
++                        c.Location = new Point(PicBox(num).Location.X, PicBox(num).Location.Y + 100);
++                    }
++                    else if (c.Name.Contains("submit"))
++                    {
++                        c.Location = new Point(Width - 100, Height - 100);
++                    }
++                    /*else if (c.Name.Contains("pictureB"))
++                    {
++                        c.Location = new Point(Width / 2 - c.Width / 2, Height / 2 - c.Height / 2);
++                    }*/
++                }
++
++            }
++
++        }
+     }
+ }
+\ No newline at end of file
+diff --git a/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.dll b/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.dll
+index 286be81..42fb39d 100644
+Binary files a/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.dll and b/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.dll differ
+diff --git a/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.pdb b/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.pdb
+index df478b9..7231e74 100644
+Binary files a/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.pdb and b/Mastermind_Interface/Mastermind_Interface/bin/Debug/net6.0-windows/Mastermind_Interface.pdb differ
+diff --git a/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.csproj.GenerateResource.cache b/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.csproj.GenerateResource.cache
+index 6478e02..3a212c3 100644
+Binary files a/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.csproj.GenerateResource.cache and b/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.csproj.GenerateResource.cache differ
+diff --git a/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.dll b/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.dll
+index 286be81..42fb39d 100644
+Binary files a/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.dll and b/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.dll differ
+diff --git a/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.pdb b/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.pdb
+index df478b9..7231e74 100644
+Binary files a/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.pdb and b/Mastermind_Interface/Mastermind_Interface/obj/Debug/net6.0-windows/Mastermind_Interface.pdb differ

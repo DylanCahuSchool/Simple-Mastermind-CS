@@ -15,21 +15,13 @@ namespace Mastermind_Interface
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int Percent25Height = Convert.ToInt32(this.Size.Height * 0.25);
-            int Percent50Height = Convert.ToInt32(this.Size.Height * 0.5);
-            int Percent75Height = Convert.ToInt32(this.Size.Height * 0.75);
-            int Percent25Width = Convert.ToInt32(this.Size.Width * 0.25);
-            int Percent50Width = Convert.ToInt32(this.Size.Width * 0.5);
-            int Percent75Width = Convert.ToInt32(this.Size.Width * 0.75);
-            int Percent90Width = Convert.ToInt32(this.Size.Width * 0.90);
-
             //create 4 picture boxes and initialize them to green
             for (int i = 0; i < 4; i++)
             {
                 PictureBox pb = new PictureBox();
                 pb.Name = "pb" + i;
                 pb.Size = new Size(100, 100);
-                pb.Location = new Point(50 + i * Percent25Width, Percent50Height);
+                pb.Location = new Point(50 + i * returnPosition(25, "w"), returnPosition(65, "h"));
                 pb.Image = Image.FromFile(selectImage(0));
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 this.Controls.Add(pb);
@@ -45,12 +37,10 @@ namespace Mastermind_Interface
                 {
                     btn.Text = "-";
                     btn.Location = new Point(PicBox(i).Location.X, PicBox(i).Location.Y + 100);
-                    //btn.Location = new Point(50 + i * Percent25Width, Percent75Height);
                 }
                 else
                 {
                     btn.Text = "+";
-                    //place the button to the right of the previous one
                     btn.Location = new Point(PicBox(i).Location.X + 50, PicBox(i).Location.Y + 100);
                 }
                 btn.Click += new EventHandler(btn_Click);
@@ -58,22 +48,35 @@ namespace Mastermind_Interface
             }
 
         }
+        
+        private int returnPosition(int num, string c)
+        {
+            if (c[0] == 'w') //c[0] is the first letter of the string so is it a converter to char
+            {
+                return Convert.ToInt32(this.Size.Width* num / 100);
+            }
+            else
+            {
+                return Convert.ToInt32(this.Size.Height* num / 100);
+            }
+        }
+        
         private string selectImage(int num)
         {
-            //switch to return image name
-            switch (num)
-            {
-                case 0: return "green.png";
-                case 1: return "red.png";
-                case 2: return "blue.png"; 
-                case 3: return "pink.png"; 
-                case 4: return "yellow.png";
-                case 5: return "purple.png"; 
-                case 6: return "orange.png";
-                case 7: return "white.png";
-                case 8: return "none.png";
-                default: return "error.png";
-            }
+                //switch to return image name
+                switch (num)
+                {
+                    case 0: return "green.png";
+                    case 1: return "red.png";
+                    case 2: return "blue.png"; 
+                    case 3: return "pink.png"; 
+                    case 4: return "yellow.png";
+                    case 5: return "purple.png"; 
+                    case 6: return "orange.png";
+                    case 7: return "white.png";
+                    case 8: return "none.png";
+                    default: return "error.png";
+                }
         }
 
         private int returnIndex(int num)
@@ -100,7 +103,6 @@ namespace Mastermind_Interface
 
         private void Submit_Click(object sender, EventArgs e)
         {
-
             Motor.game();
             displayBalls();
         }
@@ -114,7 +116,7 @@ namespace Mastermind_Interface
                 pictureBoxes[i] = new PictureBox();
                 pictureBoxes[i].Name = "pictureB" + (i + 1).ToString();
                 pictureBoxes[i].Size = new Size(50, 50);
-                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25 , (i * 50) - (nbBoxes * 50) + 50);
+                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25, (i * 50) - (nbBoxes * 50) + 50);
                 pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
                 this.Controls.Add(pictureBoxes[i]);
@@ -143,16 +145,13 @@ namespace Mastermind_Interface
 
         public void displayBallsEnd()
         {
-
-            int Percent90Width = Convert.ToInt32(this.Size.Width * 0.90);
-
             PictureBox[] pictureBoxes = new PictureBox[nbBoxes + 4];
             for (int i = nbBoxes; i < nbBoxes + 4; i++)
             {
                 pictureBoxes[i] = new PictureBox();
                 pictureBoxes[i].Name = "pictureB" + (i + 1).ToString();
                 pictureBoxes[i].Size = new Size(50, 50);
-                pictureBoxes[i].Location = new Point(Percent90Width, (i * 50) - (nbBoxes * 50) + 50);
+                pictureBoxes[i].Location = new Point(returnPosition(90,"w"), (i * 50) - (nbBoxes * 50) + 50);
                 pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixPC[i - nbBoxes]));
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
                 this.Controls.Add(pictureBoxes[i]);
@@ -268,7 +267,6 @@ namespace Mastermind_Interface
             if (num % 2 == 0)
             {
                 Motor.choixJoueur[returnIndex(num)]--;
-
             }
             else
             {
@@ -283,8 +281,38 @@ namespace Mastermind_Interface
             {
                 Motor.choixJoueur[returnIndex(num)] = 6;
             }
-           if (num < 8) {
+            
+            if (num < 8) {
                 PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
+            }
+        }
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {//foreach item in controller, adapt the position
+            Submit.Location = new Point(Width - 110, Height - 100);
+            foreach (Control c in this.Controls)
+            {
+                if (c.Name.Contains("pb"))
+                {
+                    int num = Convert.ToInt32(c.Name.Substring(2));
+                    c.Location = new Point(50 + num * returnPosition(25, "w"), returnPosition(65, "h"));
+                }
+                else if (c.Name.Contains("btn"))
+                {
+                    int num = Convert.ToInt32(c.Name.Substring(3));
+                    if (c.Text == "+")
+                    {
+                        c.Location = new Point(PicBox(num).Location.X + 50, PicBox(num).Location.Y + 100);
+                    }
+                    else if (c.Text == "-")
+                    {
+                        c.Location = new Point(PicBox(num).Location.X, PicBox(num).Location.Y + 100);
+                    }
+                }
+                   
+                    /*else if (c.Name.Contains("pictureB"))
+                    {
+                        c.Location = new Point(Width / 2 - c.Width / 2, Height / 2 - c.Height / 2);
+                    }*/
             }
         }
     }

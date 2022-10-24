@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Submit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Submit
             // 
-            this.Submit.Location = new System.Drawing.Point(1091, 12);
+            this.Submit.Location = new System.Drawing.Point(1091, 491);
             this.Submit.Name = "Submit";
             this.Submit.Size = new System.Drawing.Size(94, 29);
             this.Submit.TabIndex = 0;
@@ -48,10 +49,11 @@
             this.BackColor = System.Drawing.Color.SandyBrown;
             this.ClientSize = new System.Drawing.Size(1197, 532);
             this.Controls.Add(this.Submit);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Mastermind beta";
+            this.Text = "Mastermind alpha";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
             this.ResumeLayout(false);
 
         }
