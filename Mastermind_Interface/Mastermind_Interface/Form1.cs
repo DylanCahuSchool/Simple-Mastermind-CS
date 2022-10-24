@@ -6,6 +6,8 @@ namespace Mastermind_Interface
     public partial class Form1 : Form
     {
 
+        private int nbBoxesEmpty;
+        private int nbHintsEmpty;
         private int nbBoxes;
         private int nbHints;
         public Form1()
@@ -13,7 +15,7 @@ namespace Mastermind_Interface
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
             //create 4 picture boxes and initialize them to green
             for (int i = 0; i < 4; i++)
@@ -45,6 +47,10 @@ namespace Mastermind_Interface
                 }
                 btn.Click += new EventHandler(btn_Click);
                 this.Controls.Add(btn);
+            }
+            for (int i = 0; i < 16; i++)
+            {
+                displayBallsStart();
             }
 
         }
@@ -107,38 +113,57 @@ namespace Mastermind_Interface
             displayBalls();
         }
         
+        private void displayBallsStart()
+        {
+            PictureBox[] pictureBoxes = new PictureBox[nbBoxesEmpty + 4];
+            for (int j = nbBoxesEmpty; j < nbBoxesEmpty + 4; j++)
+            {
+                pictureBoxes[j] = new PictureBox();
+                pictureBoxes[j].Name = "pictureB" + (j + 1).ToString();
+                pictureBoxes[j].Size = new Size(50, 50);
+                pictureBoxes[j].Location = new Point((nbBoxesEmpty * 15) + 25, (j * 50) - (nbBoxesEmpty * 50) + 50);
+                pictureBoxes[j].Image = Image.FromFile(selectImage(8));
+                pictureBoxes[j].SizeMode = PictureBoxSizeMode.Zoom;
+                this.Controls.Add(pictureBoxes[j]);
+            }
+            nbBoxesEmpty += 4;
+
+            PictureBox[] hintBoxes = new PictureBox[nbHintsEmpty + 4];
+            for (int j = nbHintsEmpty; j < nbHintsEmpty + 4; j++)
+            {
+                hintBoxes[j] = new PictureBox();
+                hintBoxes[j].Name = "hintBox" + (j + 1).ToString();
+                hintBoxes[j].Size = new Size(25, 25);
+                hintBoxes[j].Image = Image.FromFile(selectImage(8));
+                //hintBoxes[j].Image = Image.FromFile("error.png");
+                hintBoxes[j].SizeMode = PictureBoxSizeMode.Zoom;
+                this.Controls.Add(hintBoxes[j]);
+            }
+            hintBoxes[nbHintsEmpty].Location = new Point((nbHintsEmpty * 15) + 25, 0);
+            hintBoxes[nbHintsEmpty + 2].Location = new Point((nbHintsEmpty * 15) + 50, 0);
+            hintBoxes[nbHintsEmpty + 1].Location = new Point((nbHintsEmpty * 15) + 25, 25);
+            hintBoxes[nbHintsEmpty + 3].Location = new Point((nbHintsEmpty * 15) + 50, 25);
+
+            nbHintsEmpty += 4;
+        }
+
         private void displayBalls()
         {
-            
-            PictureBox[] pictureBoxes = new PictureBox[nbBoxes+4];
             for (int i = nbBoxes; i < nbBoxes + 4 ; i++)
             {
-                pictureBoxes[i] = new PictureBox();
-                pictureBoxes[i].Name = "pictureB" + (i + 1).ToString();
-                pictureBoxes[i].Size = new Size(50, 50);
-                pictureBoxes[i].Location = new Point((nbBoxes * 15) + 25, (i * 50) - (nbBoxes * 50) + 50);
-                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
-                pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
-                this.Controls.Add(pictureBoxes[i]);
+                //use the collection picturebox to find the picturebox
+                PictureBox pb = (PictureBox)this.Controls.Find("pictureB" + (i + 1).ToString(), true)[0];
+                pb.Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
             }
             nbBoxes += 4;
-            
-            PictureBox[] hintBoxes = new PictureBox[nbHints+4];
+
+
             for (int i = nbHints; i < nbHints + 4 ; i++)
             {
-                hintBoxes[i] = new PictureBox();
-                hintBoxes[i].Name = "hintBox" + (i + 1).ToString();
-                hintBoxes[i].Size = new Size(25, 25);
-                hintBoxes[i].Image = Image.FromFile(selectImage(Motor.indic[i - nbHints]));
-                //hintBoxes[i].Image = Image.FromFile("error.png");
-                hintBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
-                this.Controls.Add(hintBoxes[i]);
+                //use the collection hintboxes to find the hintboxes
+                PictureBox hb = (PictureBox)this.Controls.Find("hintBox" + (i + 1).ToString(), true)[0];
+               hb.Image = Image.FromFile(selectImage(Motor.indic[i - nbHints]));
             }
-            hintBoxes[nbHints].Location = new Point((nbHints * 15) + 25, 0);
-            hintBoxes[nbHints +2].Location = new Point((nbHints * 15) + 50, 0);
-            hintBoxes[nbHints +1].Location = new Point((nbHints * 15) +25, 25);
-            hintBoxes[nbHints +3].Location = new Point((nbHints * 15) + 50, 25);
-            
             nbHints += 4;
             
         }
@@ -158,11 +183,11 @@ namespace Mastermind_Interface
             }
             
         }
-
+       
         public void win()
         {   
       
-            this.Controls.Remove(Submit);
+           /* this.Controls.Remove(Submit);
             //for each pb, remove them
             for (int i = 0; i < 4; i++)
             {
@@ -200,7 +225,7 @@ namespace Mastermind_Interface
             no.Click += new EventHandler(no_Click);
             this.Controls.Add(no);
 
-            displayBallsEnd();
+            displayBallsEnd();*/
         }
         
         public void fail()
@@ -257,9 +282,9 @@ namespace Mastermind_Interface
             Application.Exit();
         }
 
-        //create btn_Click function with num parameter
         private void btn_Click(object sender, EventArgs e)
-        {
+        {//create btn_Click function with num parameter
+
             //get the button name
             string name = ((Button)sender).Name;
             //get the number of the button
@@ -286,6 +311,7 @@ namespace Mastermind_Interface
                 PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
             }
         }
+        
         private void Form1_ResizeEnd(object sender, EventArgs e)
         {//foreach item in controller, adapt the position
             Submit.Location = new Point(Width - 110, Height - 100);

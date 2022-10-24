@@ -84,18 +84,19 @@ namespace Mastermind_Interface
 
         public static void game()
         {   
-            if (nbJeu <= 15)
+            if (nbJeu <= 14)
             {
                 //soit 16 manches 
                 nbJeu += 1;
-
                 nbCommun(choixPC, choixJoueur);
-
             }
             else
             {
-                //execute fail() in Form1
-                Program.form1.fail();
+                if (nbCommun(choixPC, choixJoueur) != 4)
+                {
+                    //execute fail() in Form1
+                    Program.form1.fail();
+                }
             }
         }
     }
