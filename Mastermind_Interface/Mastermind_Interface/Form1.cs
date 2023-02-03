@@ -52,7 +52,25 @@ namespace Mastermind_Interface
             {
                 displayBallsStart();
             }
+            //create a button on the top right corner to reset the game
+            Button btnReset = new Button();
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(80, 30);
+            btnReset.Text = "Reset";
+            btnReset.Location = new Point(returnPosition(95, "w"), returnPosition(3, "h"));
+            btnReset.Click += new EventHandler(btnReset_Click);
+            this.Controls.Add(btnReset);
 
+
+            //------------------------------------------------------
+            displayBallsEnd();// A RETIRER
+            //------------------------------------------------------
+
+        }
+        public void btnReset_Click(object sender, EventArgs e)
+        {
+            //reset the game
+            Application.Restart();
         }
 
         private int returnPosition(int num, string c)

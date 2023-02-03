@@ -62,7 +62,7 @@ namespace Mastermind_Interface
                     choixPC2[i] = -1;
                     choixJoueur2[i] = -2; //Pour supprimer les doublons
                     cpt = cpt + 1;
-                    indic[i] = 1;
+                    //indic[i] = 1;
                 }
             }
             if (cpt == 4)
@@ -82,7 +82,7 @@ namespace Mastermind_Interface
             for (int i = 0; i < 4; i++)
             {
 
-                if (choixPC2[i] == TabJoueur[0] || choixPC2[i] == TabJoueur[1] || choixPC2[i] == TabJoueur[2] || choixPC2[i] == TabJoueur[3])
+                if (TabPC[i] == TabJoueur[0] && choixJoueur2[0] != -2 || TabPC[i] == TabJoueur[1] && choixJoueur2[1] != -2 || TabPC[i] == TabJoueur[2] && choixJoueur2[2] != -2 || TabPC[i] == TabJoueur[3] && choixJoueur2[3] != -2)
                 {
 
                     indic[i] = 7;
