@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {}
+    "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {
+    "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
+        "projectUniqueName": "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
         "projectName": "Mastermind_Interface",
-        "projectPath": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
+        "projectPath": "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
         "packagesPath": "C:\\Users\\Mars\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mars\\Documents\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\obj\\",
+        "outputPath": "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -62,7 +62,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

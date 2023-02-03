@@ -12,9 +12,9 @@ namespace Mastermind_Interface
 
         public static int[] choixPC = randomTab();
 
-        public static int[] choixJoueur = {0,0,0,0};
+        public static int[] choixJoueur = { 0, 0, 0, 0 };
 
-        public static int[] indic = {8,8,8,8};
+        public static int[] indic = { 8, 8, 8, 8 };
 
         public static bool phaseJeu = false;
 
@@ -27,7 +27,7 @@ namespace Mastermind_Interface
             int rand_num = rd.Next(1, 7);
             return rand_num;
         }
-        
+
         public static int[] randomTab()
         {//génère un tableau de 4 chiffres aléatoires
             int[] tab = { 0, 0, 0, 0 };
@@ -38,6 +38,14 @@ namespace Mastermind_Interface
             return tab;
         }
 
+        public static void resetHint()
+        {
+            //set indic to 8
+            for (int i = 0; i < 4; i++)
+            {
+                indic[i] = 8;
+            }
+        }
 
         public static int nbCommun(int[] TabPC, int[] TabJoueur)
         {//pour chaque chiffre du tableau, si il est dans le tableau du joueur, on incrémente le compteur
@@ -74,8 +82,9 @@ namespace Mastermind_Interface
             for (int i = 0; i < 4; i++)
             {
 
-                if (choixPC2[i] == choixJoueur2[0] || choixPC2[i] == TabJoueur[1] || choixPC2[i] == TabJoueur[2] || choixPC2[i] == TabJoueur[3])
-                {   
+                if (choixPC2[i] == TabJoueur[0] || choixPC2[i] == TabJoueur[1] || choixPC2[i] == TabJoueur[2] || choixPC2[i] == TabJoueur[3])
+                {
+
                     indic[i] = 7;
                 }
             }
@@ -83,11 +92,12 @@ namespace Mastermind_Interface
         }
 
         public static void game()
-        {   
+        {
             if (nbJeu <= 14)
             {
                 //soit 16 manches 
                 nbJeu += 1;
+                resetHint();
                 nbCommun(choixPC, choixJoueur);
             }
             else
