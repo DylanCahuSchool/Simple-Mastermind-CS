@@ -9,17 +9,11 @@ namespace Mastermind_Interface
 
     public class Motor
     {
-
         public static int[] choixPC = randomTab();
-
         public static int[] choixJoueur = { 0, 0, 0, 0 };
-
         public static int[] indic = { 8, 8, 8, 8 };
-
         public static bool phaseJeu = false;
-
         public static int nbJeu = 0;
-
 
         public static int genererRandom()
         {//permet de générer un chiffre aléatoire entre 1 et 6
@@ -27,7 +21,6 @@ namespace Mastermind_Interface
             int rand_num = rd.Next(1, 7);
             return rand_num;
         }
-
         public static int[] randomTab()
         {//génère un tableau de 4 chiffres aléatoires
             int[] tab = { 0, 0, 0, 0 };
@@ -37,7 +30,6 @@ namespace Mastermind_Interface
             }
             return tab;
         }
-
         public static void resetHint()
         {
             //set indic to 8
@@ -46,15 +38,29 @@ namespace Mastermind_Interface
                 indic[i] = 8;
             }
         }
-
+        public static int returnEmptyHint()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (indic[i] == 8)
+                {
+                    return i;
+                }
+            }
+            return 0; //bidouille
+        }
         public static int nbCommun(int[] TabPC, int[] TabJoueur)
         {//pour chaque chiffre du tableau, si il est dans le tableau du joueur, on incrémente le compteur
             //variables locale
             int cpt = 0;
             int[] choixPC2 = { 0, 0, 0, 0 };
+            int[] choixPC3 = { 0, 0, 0, 0 };
             int[] choixJoueur2 = { 0, 0, 0, 0 };
+            int[] choixJoueur3 = { 0, 0, 0, 0 };
             TabPC.CopyTo(choixPC2, 0);
+            TabPC.CopyTo(choixPC3, 0);
             TabJoueur.CopyTo(choixJoueur2, 0);
+            TabJoueur.CopyTo(choixJoueur3, 0);
             for (int i = 0; i < 4; i++)
             {
                 if (choixPC2[i] == choixJoueur2[i])
@@ -75,22 +81,40 @@ namespace Mastermind_Interface
                 //for i in cpt indic[i]=1
                 for (int i = 0; i < cpt; i++)
                 {
-                    indic[i] = 1;
+                    indic[returnEmptyHint()] = 1;
                 }
 
             }
             for (int i = 0; i < 4; i++)
-            {
+            {//return white hint
 
-                if (TabPC[i] == TabJoueur[0] && choixJoueur2[0] != -2 || TabPC[i] == TabJoueur[1] && choixJoueur2[1] != -2 || TabPC[i] == TabJoueur[2] && choixJoueur2[2] != -2 || TabPC[i] == TabJoueur[3] && choixJoueur2[3] != -2)
+                if (choixPC3[i] == choixJoueur3[0] && choixJoueur2[0] != -2 && choixPC2[i] != -1)
                 {
-
-                    indic[i] = 7;
+                    choixPC3[i] = -1;
+                    indic[returnEmptyHint()] = 7;
+                    continue;
+                }
+                if (choixPC3[i] == choixJoueur3[1] && choixJoueur2[1] != -2 && choixPC2[i] != -1)
+                {
+                    choixPC3[i] = -1;
+                    indic[returnEmptyHint()] = 7;
+                    continue;
+                }
+                if (choixPC3[i] == choixJoueur3[2] && choixJoueur2[2] != -2 && choixPC2[i] != -1)
+                {
+                    choixPC3[i] = -1;
+                    indic[returnEmptyHint()] = 7;
+                    continue;
+                }
+                if (choixPC3[i] == choixJoueur3[3] && choixJoueur2[3] != -2 && choixPC2[i] != -1)
+                {
+                    choixPC3[i] = -1;
+                    indic[returnEmptyHint()] = 7;
+                    continue;
                 }
             }
             return cpt;
         }
-
         public static void game()
         {
             if (nbJeu <= 14)
@@ -102,6 +126,7 @@ namespace Mastermind_Interface
             }
             else
             {
+                resetHint();
                 if (nbCommun(choixPC, choixJoueur) != 4)
                 {
                     //execute fail() in Form1

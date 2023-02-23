@@ -10,11 +10,11 @@ namespace Mastermind_Interface
         private int nbHintsEmpty;
         private int nbBoxes;
         private int nbHints;
+
         public Form1()
         {
             InitializeComponent();
         }
-
         public void Form1_Load(object sender, EventArgs e)
         {
             //create 4 picture boxes and initialize them to green
@@ -63,7 +63,7 @@ namespace Mastermind_Interface
 
 
             //------------------------------------------------------
-            displayBallsEnd();// A RETIRER
+            displayBallsEnd();// Pour debug
             //------------------------------------------------------
 
         }
@@ -72,7 +72,6 @@ namespace Mastermind_Interface
             //reset the game
             Application.Restart();
         }
-
         private int returnPosition(int num, string c)
         {
             if (c[0] == 'w') //c[0] is the first letter of the string so is it a converter to char
@@ -84,7 +83,6 @@ namespace Mastermind_Interface
                 return Convert.ToInt32(this.Size.Height * num / 100);
             }
         }
-
         private string selectImage(int num)
         {
             //switch to return image name
@@ -102,7 +100,6 @@ namespace Mastermind_Interface
                 default: return "error.png";
             }
         }
-
         private int returnIndex(int num)
         {
             int index = 0;
@@ -119,18 +116,15 @@ namespace Mastermind_Interface
                 default: return index = 455;//bidouille
             }
         }
-
         private PictureBox PicBox(int num)
         {
             return (PictureBox)this.Controls.Find("pb" + returnIndex(num), true)[0];
         }
-
         private void Submit_Click(object sender, EventArgs e)
         {
             Motor.game();
             displayBalls();
         }
-
         private void displayBallsStart()
         {
             PictureBox[] pictureBoxes = new PictureBox[nbBoxesEmpty + 4];
@@ -164,7 +158,6 @@ namespace Mastermind_Interface
 
             nbHintsEmpty += 4;
         }
-
         private void displayBalls()
         {
             for (int i = nbBoxes; i < nbBoxes + 4; i++)
@@ -185,7 +178,6 @@ namespace Mastermind_Interface
             nbHints += 4;
 
         }
-
         public void displayBallsEnd()
         {
             PictureBox[] pictureBoxes = new PictureBox[nbBoxes + 4];
@@ -201,51 +193,49 @@ namespace Mastermind_Interface
             }
 
         }
-
         public void win()
         {
 
-            /* this.Controls.Remove(Submit);
-             //for each pb, remove them
-             for (int i = 0; i < 4; i++)
-             {
-                 this.Controls.Remove(this.Controls.Find("pb" + i, true)[0]);
-             }
-             //for each button, remove them
-             for (int i = 0; i < 8; i++)
-             {
-                 this.Controls.Remove(this.Controls.Find("btn" + i, true)[0]);
-             }
+            this.Controls.Remove(Submit);
+            //for each pb, remove them
+            for (int i = 0; i < 4; i++)
+            {
+                this.Controls.Remove(this.Controls.Find("pb" + i, true)[0]);
+            }
+            //for each button, remove them
+            for (int i = 0; i < 8; i++)
+            {
+                this.Controls.Remove(this.Controls.Find("btn" + i, true)[0]);
+            }
 
-             PictureBox winPic = new PictureBox();
-             winPic.Name = "pictureB" + (nbBoxes + 1).ToString();
-             winPic.Size = new Size(750, 200);
-             winPic.Location = new Point(250, 250);
-             winPic.Image = Image.FromFile("win.png");
-             winPic.SizeMode = PictureBoxSizeMode.Zoom;
-             this.Controls.Add(winPic);
+            PictureBox winPic = new PictureBox();
+            winPic.Name = "pictureB" + (nbBoxes + 1).ToString();
+            winPic.Size = new Size(750, 200);
+            winPic.Location = new Point(250, 250);
+            winPic.Image = Image.FromFile("win.png");
+            winPic.SizeMode = PictureBoxSizeMode.Zoom;
+            this.Controls.Add(winPic);
 
-             //create a new button "yes"
-             Button yes = new Button();
-             yes.Name = "yes";
-             yes.Size = new Size(100, 50);
-             yes.Location = new Point(510, 460);
-             yes.Text = "Oui";
-             yes.Click += new EventHandler(yes_Click);
-             this.Controls.Add(yes);
+            //create a new button "yes"
+            Button yes = new Button();
+            yes.Name = "yes";
+            yes.Size = new Size(100, 50);
+            yes.Location = new Point(510, 460);
+            yes.Text = "Oui";
+            yes.Click += new EventHandler(yes_Click);
+            this.Controls.Add(yes);
 
-             //create a new button "no"
-             Button no = new Button();
-             no.Name = "no";
-             no.Size = new Size(100, 50);
-             no.Location = new Point(610, 460);
-             no.Text = "Non";
-             no.Click += new EventHandler(no_Click);
-             this.Controls.Add(no);
+            //create a new button "no"
+            Button no = new Button();
+            no.Name = "no";
+            no.Size = new Size(100, 50);
+            no.Location = new Point(610, 460);
+            no.Text = "Non";
+            no.Click += new EventHandler(no_Click);
+            this.Controls.Add(no);
 
-             displayBallsEnd();*/
+            displayBallsEnd();
         }
-
         public void fail()
         {
 
@@ -289,17 +279,14 @@ namespace Mastermind_Interface
 
             displayBallsEnd();
         }
-
         private void yes_Click(object sender, EventArgs e)
         {//reload form1
             Application.Restart();
         }
-
         private void no_Click(object sender, EventArgs e)
         {//close the application
             Application.Exit();
         }
-
         private void btn_Click(object sender, EventArgs e)
         {//create btn_Click function with num parameter
 
@@ -330,7 +317,6 @@ namespace Mastermind_Interface
                 PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
             }
         }
-
         private void Form1_ResizeEnd(object sender, EventArgs e)
         {//foreach item in controller, adapt the position
             Submit.Location = new Point(Width - 110, Height - 100);
