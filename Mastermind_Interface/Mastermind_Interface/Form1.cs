@@ -317,34 +317,35 @@ namespace Mastermind_Interface
                 PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
             }
         }
+        //unfinished
         private void Form1_ResizeEnd(object sender, EventArgs e)
         {//foreach item in controller, adapt the position
-            Submit.Location = new Point(Width - 110, Height - 100);
-            foreach (Control c in this.Controls)
-            {
-                if (c.Name.Contains("pb"))
+            /*    Submit.Location = new Point(Width - 110, Height - 100);
+                foreach (Control c in this.Controls)
                 {
-                    int num = Convert.ToInt32(c.Name.Substring(2));
-                    c.Location = new Point(50 + num * returnPosition(25, "w"), returnPosition(65, "h"));
-                }
-                else if (c.Name.Contains("btn"))
-                {
-                    int num = Convert.ToInt32(c.Name.Substring(3));
-                    if (c.Text == "+")
+                    if (c.Name.Contains("pb"))
                     {
-                        c.Location = new Point(PicBox(num).Location.X + 50, PicBox(num).Location.Y + 100);
+                        int num = Convert.ToInt32(c.Name.Substring(2));
+                        c.Location = new Point(50 + num * returnPosition(25, "w"), returnPosition(65, "h"));
                     }
-                    else if (c.Text == "-")
+                    else if (c.Name.Contains("btn"))
                     {
-                        c.Location = new Point(PicBox(num).Location.X, PicBox(num).Location.Y + 100);
+                        int num = Convert.ToInt32(c.Name.Substring(3));
+                        if (c.Text == "+")
+                        {
+                            c.Location = new Point(PicBox(num).Location.X + 50, PicBox(num).Location.Y + 100);
+                        }
+                        else if (c.Text == "-")
+                        {
+                            c.Location = new Point(PicBox(num).Location.X, PicBox(num).Location.Y + 100);
+                        }
                     }
-                }
 
-                /*else if (c.Name.Contains("pictureB"))
-                {
-                    c.Location = new Point(Width / 2 - c.Width / 2, Height / 2 - c.Height / 2);
-                }*/
-            }
+                    /*else if (c.Name.Contains("pictureB"))
+                    {
+                        c.Location = new Point(Width / 2 - c.Width / 2, Height / 2 - c.Height / 2);
+                    }
+        }*/
         }
     }
 }

@@ -14,7 +14,6 @@ namespace Mastermind_Interface
             ApplicationConfiguration.Initialize();
             form1 = new Form1();
             Application.Run(form1);
-            Motor Motor = new Motor();
         }
     }
 }

@@ -53,66 +53,47 @@ namespace Mastermind_Interface
         {//pour chaque chiffre du tableau, si il est dans le tableau du joueur, on incrémente le compteur
             //variables locale
             int cpt = 0;
-            int[] choixPC2 = { 0, 0, 0, 0 };
-            int[] choixPC3 = { 0, 0, 0, 0 };
-            int[] choixJoueur2 = { 0, 0, 0, 0 };
-            int[] choixJoueur3 = { 0, 0, 0, 0 };
-            TabPC.CopyTo(choixPC2, 0);
-            TabPC.CopyTo(choixPC3, 0);
-            TabJoueur.CopyTo(choixJoueur2, 0);
-            TabJoueur.CopyTo(choixJoueur3, 0);
+            int[] choixPC = TabPC.ToArray();
+            int[] choixJoueur = TabJoueur.ToArray();
+
             for (int i = 0; i < 4; i++)
             {
-                if (choixPC2[i] == choixJoueur2[i])
+                if (choixPC[i] == choixJoueur[i])
                 {
-                    choixPC2[i] = -1;
-                    choixJoueur2[i] = -2; //Pour supprimer les doublons
-                    cpt = cpt + 1;
-                    //indic[i] = 1;
+                    choixPC[i] = -1;
+                    choixJoueur[i] = -2; //Pour supprimer les doublons
+                    cpt++;
                 }
             }
+
             if (cpt == 4)
             {
-                //execute fail() in Form1
                 Program.form1.win();
             }
             else if (cpt > 0)
             {
-                //for i in cpt indic[i]=1
                 for (int i = 0; i < cpt; i++)
                 {
                     indic[returnEmptyHint()] = 1;
                 }
-
             }
-            for (int i = 0; i < 4; i++)
-            {//return white hint
 
-                if (choixPC3[i] == choixJoueur3[0] && choixJoueur2[0] != -2 && choixPC2[i] != -1)
+            foreach (int choix in choixJoueur)
+            {
+                if (choixPC.Contains(choix) && choix != -2)
                 {
-                    choixPC3[i] = -1;
-                    indic[returnEmptyHint()] = 7;
-                    continue;
-                }
-                if (choixPC3[i] == choixJoueur3[1] && choixJoueur2[1] != -2 && choixPC2[i] != -1)
-                {
-                    choixPC3[i] = -1;
-                    indic[returnEmptyHint()] = 7;
-                    continue;
-                }
-                if (choixPC3[i] == choixJoueur3[2] && choixJoueur2[2] != -2 && choixPC2[i] != -1)
-                {
-                    choixPC3[i] = -1;
-                    indic[returnEmptyHint()] = 7;
-                    continue;
-                }
-                if (choixPC3[i] == choixJoueur3[3] && choixJoueur2[3] != -2 && choixPC2[i] != -1)
-                {
-                    choixPC3[i] = -1;
-                    indic[returnEmptyHint()] = 7;
-                    continue;
+                    choixPC[Array.IndexOf(choixPC, choix)] = -1;
+                    if (indic.Contains(7))
+                    {
+                        indic[Array.IndexOf(indic, 7)] = 1;
+                    }
+                    else
+                    {
+                        indic[returnEmptyHint()] = 7;
+                    }
                 }
             }
+
             return cpt;
         }
         public static void game()
