@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {}
+    "C:\\Users\\Utilisateur\\Documents\\Git\\Simple-Mastermind-CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {
+    "C:\\Users\\Utilisateur\\Documents\\Git\\Simple-Mastermind-CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
+        "projectUniqueName": "C:\\Users\\Utilisateur\\Documents\\Git\\Simple-Mastermind-CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
         "projectName": "Mastermind_Interface",
-        "projectPath": "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
-        "packagesPath": "C:\\Users\\Mars\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mars\\Documents\\git\\Mastermind_CS\\Mastermind_Interface\\Mastermind_Interface\\obj\\",
+        "projectPath": "C:\\Users\\Utilisateur\\Documents\\Git\\Simple-Mastermind-CS\\Mastermind_Interface\\Mastermind_Interface\\Mastermind_Interface.csproj",
+        "packagesPath": "C:\\Users\\Utilisateur\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Utilisateur\\Documents\\Git\\Simple-Mastermind-CS\\Mastermind_Interface\\Mastermind_Interface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mars\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Utilisateur\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,7 +63,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

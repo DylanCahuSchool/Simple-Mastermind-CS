@@ -5,28 +5,60 @@ namespace Mastermind_Interface
     using System;
 
     using System.Linq;
+    using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+    
+    public class choixUnit
+    {
+        public bool estCommun { get; set; }
+        public bool estIndic { get; set; }
+        public int idColor { get; set; }
+
+        public string getColor()
+        {
+            //switch to return color name
+            switch (idColor)
+            {
+                case 0: return "green ";
+                case 1: return "red ";
+                case 2: return "blue ";
+                case 3: return "pink ";
+                case 4: return "yellow ";
+                case 5: return "purple ";
+                case 6: return "orange ";
+                case 7: return "white ";
+                case 8: return "none ";
+                default: return "error ";
+            }
+        }
+    }
+
 
 
     public class Motor
     {
-        public static int[] choixPC = randomTab();
-        public static int[] choixJoueur = { 0, 0, 0, 0 };
+        public static choixUnit[] choixPC = randomTab();
+        public static int[] choixJoueurEnter = { 0, 0, 0, 0 };
         public static int[] indic = { 8, 8, 8, 8 };
-        public static bool phaseJeu = false;
+        //public static bool phaseJeu = false;
         public static int nbJeu = 0;
 
         public static int genererRandom()
         {//permet de générer un chiffre aléatoire entre 1 et 6
             Random rd = new Random();
-            int rand_num = rd.Next(1, 7);
+            int rand_num = rd.Next(0, 7);
             return rand_num;
         }
-        public static int[] randomTab()
-        {//génère un tableau de 4 chiffres aléatoires
-            int[] tab = { 0, 0, 0, 0 };
+        public static choixUnit[] randomTab()
+        {
+            choixUnit[] tab = new choixUnit[4];
             for (int i = 0; i < 4; i++)
             {
-                tab[i] = genererRandom();
+                tab[i] = new choixUnit
+                {
+                    estCommun = false,
+                    estIndic = false,
+                    idColor = genererRandom()
+                };
             }
             return tab;
         }
@@ -49,20 +81,40 @@ namespace Mastermind_Interface
             }
             return 0; //bidouille
         }
-        public static int nbCommun(int[] TabPC, int[] TabJoueur)
+
+        public static string listToString(choixUnit[] tab)
+        {
+            string str = "";
+            foreach (choixUnit choix in tab)
+            {
+                str +=" , " + choix.getColor();
+            }
+            return str;
+        }
+
+            
+        public static int nbCommun(choixUnit[] TabPC, choixUnit[] TabJoueur)
         {//pour chaque chiffre du tableau, si il est dans le tableau du joueur, on incrémente le compteur
             //variables locale
             int cpt = 0;
-            int[] choixPC = TabPC.ToArray();
-            int[] choixJoueur = TabJoueur.ToArray();
+            choixUnit[] choixPC2 = TabPC.ToArray();
+            choixUnit[] choixJoueur2 = TabJoueur.ToArray();
+
+            Console.WriteLine("choix PC : " + listToString(choixPC2));
+            Console.WriteLine("choix Joueur : " + listToString(choixJoueur2));
+            Console.WriteLine("========================================");
 
             for (int i = 0; i < 4; i++)
             {
-                if (choixPC[i] == choixJoueur[i])
+                if (choixPC2[i].idColor == choixJoueur2[i].idColor && choixJoueur2[i].estCommun == false && choixPC2[i].estCommun == false)
                 {
-                    choixPC[i] = -1;
-                    choixJoueur[i] = -2; //Pour supprimer les doublons
+                    choixPC2[i].estCommun = true;
+                    choixJoueur2[i].estCommun = true;
+                    /*choixPC2[i].estIndic = true;
+                    choixJoueur2[i].estIndic = true;*/
                     cpt++;
+                    //indic[returnEmptyHint()] = 1;
+                    Console.WriteLine("indice rouge pour pc :" + choixPC2[i].getColor() + " et joueur : " + choixJoueur2[i].getColor());
                 }
             }
 
@@ -70,34 +122,59 @@ namespace Mastermind_Interface
             {
                 Program.form1.win();
             }
-            else if (cpt > 0)
+            else
             {
-                for (int i = 0; i < cpt; i++)
+
+                
+
+                foreach (choixUnit choixJ in choixJoueur2)
                 {
-                    indic[returnEmptyHint()] = 1;
+                    Console.WriteLine("Couleur joueur : "+choixJ.getColor() + " Commun : "+choixJ.estCommun +" et Indic : "+choixJ.estIndic);
+
+                    foreach (choixUnit choixP in choixPC2)
+                    {
+
+                        if( choixJ.idColor == choixP.idColor && choixJ.estIndic == false && choixP.estIndic == false)
+                        {
+                            choixJ.estIndic = true;
+                            choixP.estIndic = true;
+                            //indic[returnEmptyHint()] = 7;
+                            //Console.WriteLine("indice blanc pour pc :" + choixP.getColor() + " et joueur : " + choixJ.getColor());
+                        }
+                        Console.WriteLine("Couleur pc : "+choixP.getColor() + " Commun : "+choixP.estCommun +" et Indic : "+choixP.estIndic);
+                    }
+
+                    foreach (choixUnit ChoixJ in choixJoueur2)
+                    {
+                        if (choixJ.estIndic==true)
+                        {
+                            choixJ.estIndic = false;
+                            indic[returnEmptyHint()] = 7;
+                        }
+                        else if(choixJ.estCommun==true)
+                        {
+                            choixJ.estCommun = false;
+                            indic[returnEmptyHint()] = 1;
+                        }
+                    }
+
                 }
             }
-
-            foreach (int choix in choixJoueur)
-            {
-                if (choixPC.Contains(choix) && choix != -2)
-                {
-                    choixPC[Array.IndexOf(choixPC, choix)] = -1;
-                    if (indic.Contains(7))
-                    {
-                        indic[Array.IndexOf(indic, 7)] = 1;
-                    }
-                    else
-                    {
-                        indic[returnEmptyHint()] = 7;
-                    }
-                }
-            }
-
             return cpt;
         }
         public static void game()
         {
+            choixUnit[] choixJoueur = new choixUnit[4];
+            for (int i = 0; i < 4; i++)
+            {
+                choixJoueur[i] = new choixUnit
+                {
+                    estCommun = false,
+                    estIndic = false,
+                    idColor = choixJoueurEnter[i]
+                };
+            }
+
             if (nbJeu <= 14)
             {
                 //soit 16 manches 

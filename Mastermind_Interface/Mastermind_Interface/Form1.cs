@@ -83,7 +83,7 @@ namespace Mastermind_Interface
                 return Convert.ToInt32(this.Size.Height * num / 100);
             }
         }
-        private string selectImage(int num)
+        public string selectImage(int num)
         {
             //switch to return image name
             switch (num)
@@ -164,7 +164,7 @@ namespace Mastermind_Interface
             {
                 //use the collection picturebox to find the picturebox
                 PictureBox pb = (PictureBox)this.Controls.Find("pictureB" + (i + 1).ToString(), true)[0];
-                pb.Image = Image.FromFile(selectImage(Motor.choixJoueur[i - nbBoxes]));
+                pb.Image = Image.FromFile(selectImage(Motor.choixJoueurEnter[i - nbBoxes]));
             }
             nbBoxes += 4;
 
@@ -187,7 +187,7 @@ namespace Mastermind_Interface
                 pictureBoxes[i].Name = "pictureB" + (i + 1).ToString();
                 pictureBoxes[i].Size = new Size(50, 50);
                 pictureBoxes[i].Location = new Point(returnPosition(90, "w"), (i * 50) - (nbBoxes * 50) + 50);
-                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixPC[i - nbBoxes]));
+                pictureBoxes[i].Image = Image.FromFile(selectImage(Motor.choixPC[i - nbBoxes].idColor));
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.Zoom;
                 this.Controls.Add(pictureBoxes[i]);
             }
@@ -296,25 +296,25 @@ namespace Mastermind_Interface
             int num = Convert.ToInt32(name.Substring(3));
             if (num % 2 == 0)
             {
-                Motor.choixJoueur[returnIndex(num)]--;
+                Motor.choixJoueurEnter[returnIndex(num)]--;
             }
             else
             {
-                Motor.choixJoueur[returnIndex(num)]++;
+                Motor.choixJoueurEnter[returnIndex(num)]++;
             }
 
-            if (Motor.choixJoueur[returnIndex(num)] > 6)
+            if (Motor.choixJoueurEnter[returnIndex(num)] > 6)
             {
-                Motor.choixJoueur[returnIndex(num)] = 0;
+                Motor.choixJoueurEnter[returnIndex(num)] = 0;
             }
-            else if (Motor.choixJoueur[returnIndex(num)] < 0)
+            else if (Motor.choixJoueurEnter[returnIndex(num)] < 0)
             {
-                Motor.choixJoueur[returnIndex(num)] = 6;
+                Motor.choixJoueurEnter[returnIndex(num)] = 6;
             }
 
             if (num < 8)
             {
-                PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueur[returnIndex(num)]));
+                PicBox(num).Image = Image.FromFile(selectImage(Motor.choixJoueurEnter[returnIndex(num)]));
             }
         }
         //unfinished
