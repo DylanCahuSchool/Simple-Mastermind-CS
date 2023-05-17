@@ -1,12 +1,9 @@
 namespace Mastermind_Interface
 {
-    using System.Collections.Generic;
-
     using System;
 
     using System.Linq;
-    using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-    
+
     public class choixUnit
     {
         public bool estCommun { get; set; }
@@ -92,7 +89,7 @@ namespace Mastermind_Interface
             return str;
         }
 
-            
+
         public static int nbCommun(choixUnit[] TabPC, choixUnit[] TabJoueur)
         {//pour chaque chiffre du tableau, si il est dans le tableau du joueur, on incrémente le compteur
             //variables locale
@@ -110,10 +107,7 @@ namespace Mastermind_Interface
                 {
                     choixPC2[i].estCommun = true;
                     choixJoueur2[i].estCommun = true;
-                    /*choixPC2[i].estIndic = true;
-                    choixJoueur2[i].estIndic = true;*/
                     cpt++;
-                    //indic[returnEmptyHint()] = 1;
                     Console.WriteLine("indice rouge pour pc :" + choixPC2[i].getColor() + " et joueur : " + choixJoueur2[i].getColor());
                 }
             }
@@ -125,16 +119,15 @@ namespace Mastermind_Interface
             else
             {
 
-                
+
 
                 foreach (choixUnit choixJ in choixJoueur2)
                 {
-                    Console.WriteLine("Couleur joueur : "+choixJ.getColor() + " Commun : "+choixJ.estCommun +" et Indic : "+choixJ.estIndic);
 
                     foreach (choixUnit choixP in choixPC2)
                     {
 
-                        if( choixJ.idColor == choixP.idColor && choixJ.estIndic == false && choixP.estIndic == false)
+                        if (choixJ.idColor == choixP.idColor && choixJ.estIndic == false && choixP.estIndic == false)
                         {
                             choixJ.estIndic = true;
                             choixP.estIndic = true;
@@ -143,21 +136,25 @@ namespace Mastermind_Interface
                         }
                         Console.WriteLine("Couleur pc : "+choixP.getColor() + " Commun : "+choixP.estCommun +" et Indic : "+choixP.estIndic);
                     }
-
-                    foreach (choixUnit ChoixJ in choixJoueur2)
+                    if (choixJ.estCommun == true || choixJ.estIndic ==true)
                     {
-                        if (choixJ.estIndic==true)
-                        {
-                            choixJ.estIndic = false;
-                            indic[returnEmptyHint()] = 7;
-                        }
-                        else if(choixJ.estCommun==true)
-                        {
-                            choixJ.estCommun = false;
-                            indic[returnEmptyHint()] = 1;
-                        }
-                    }
 
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Couleur joueur : "+choixJ.getColor() + " Commun : "+choixJ.estCommun +" et Indic : "+choixJ.estIndic);
+                        Console.ResetColor();
+                    }
+                    Console.WriteLine("Couleur joueur : "+choixJ.getColor() + " Commun : "+choixJ.estCommun +" et Indic : "+choixJ.estIndic);
+
+                    if (choixJ.estIndic==true)
+                    {
+                        choixJ.estIndic = false;
+                        indic[returnEmptyHint()] = 7;
+                    }
+                    else if (choixJ.estCommun==true)
+                    {
+                        choixJ.estCommun = false;
+                        indic[returnEmptyHint()] = 1;
+                    }
                 }
             }
             return cpt;
